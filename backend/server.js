@@ -8,8 +8,12 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-const paymentRoutes = require('./routes/payments');
+const paymentRoutes = require('./routes/payment');
 app.use('/api/payments', paymentRoutes);
+
+// Webhook
+const webhookRoutes = require('./routes/webhook');
+app.use('/api/webhooks', webhookRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

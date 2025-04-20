@@ -1,4 +1,5 @@
 const axios = require('axios');
+const pool = require('../config/db');
 
 const RADIUS_API = 'https://api.radiustech.xyz/v1'; // use sandbox or production based on env
 
@@ -22,7 +23,15 @@ exports.createPaymentIntent = async (req, res) => {
       }
     );
 
-    res.json(response.data);
+    const { id: payment_id, status } = response.data;
+
+    // Store in DB
+    await pool.query(
+      'INSERT INTO transactions (user_address, amount, token, payment_id, status) VALUES ($1, $2, $3, $4, $5)',
+      [userAddress, amount, token, payment_id, status]
+    );
+
+    res.json({ payment_id, status });
   } catch (error) {
     console.error('Radius error:', error.response?.data || error.message);
     res.status(500).json({ error: 'Payment creation failed' });
