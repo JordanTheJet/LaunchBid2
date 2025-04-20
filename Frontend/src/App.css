@@ -1,0 +1,30 @@
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.App-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.App-header h1 {
+  color: #333;
+}
+
+.success-message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.error-message {
+  background-color: #f2dede;
+  color: #a94442;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
